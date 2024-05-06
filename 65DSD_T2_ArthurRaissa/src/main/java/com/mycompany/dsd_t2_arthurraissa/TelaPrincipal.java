@@ -155,14 +155,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            TelaPrincipal example = new TelaPrincipal();
-            example.setVisible(true);
-            Veiculo veiculo = new Veiculo(1, 0, 0, example.possiveisEntradas);
-            
-            example.mostrarPossiveisEntradas();
-        });
-    }
+    SwingUtilities.invokeLater(() -> {
+        TelaPrincipal example = new TelaPrincipal();
+        example.setVisible(true);        
+        // Crie uma instância de VeiculoController
+        VeiculoController veiculoController = new VeiculoController(new Veiculo(1, 0, 0, example.possiveisEntradas));
+
+        // Chame o método mover() do VeiculoController
+        veiculoController.mover();
+        
+        example.mostrarPossiveisEntradas();
+    });
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.

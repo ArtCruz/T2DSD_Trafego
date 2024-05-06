@@ -13,29 +13,78 @@ import java.util.Collections;
  */
 public class Veiculo { 
     private String posicao;
+    private String proximaPosicao;
     private int id;
     private int dataHoraVeiculoChegaIntersecao;
     private boolean existencia;
     private int velocidade;
-    private ArrayList<String> possiveisEntradas; // Adicione esta linha
+    private ArrayList<String> possiveisEntradas;
+    
+    private VeiculoController controller;
 
     public Veiculo(int id, int dataHoraVeiculoChegaIntersecao, int dataHoraVeiculoSaiIntersecao, ArrayList<String> possiveisEntradas) { // Modifique esta linha
         this.id = id;
         this.dataHoraVeiculoChegaIntersecao = dataHoraVeiculoChegaIntersecao;
         this.possiveisEntradas = possiveisEntradas; // Modifique esta linha
         posicao = ramdomOrigem(possiveisEntradas);
+//        proximaPosicao = 
         
         System.out.println("Posição de Origem: " + posicao);
-        //destino = ramdomDestino();
+        controller = new VeiculoController(this);
+    }
+
+    public Veiculo() {
+        
     }
     
+    
+    
     private String ramdomOrigem(ArrayList<String> possiveisEntradas) {       
-        // Embaralhar a lista
         Collections.shuffle(possiveisEntradas);
-        
-        // Pegar o primeiro elemento embaralhado
         return possiveisEntradas.get(0);
     }
+
+    public String getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(String posicao) {
+        this.posicao = posicao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getDataHoraVeiculoChegaIntersecao() {
+        return dataHoraVeiculoChegaIntersecao;
+    }
+
+    public void setDataHoraVeiculoChegaIntersecao(int dataHoraVeiculoChegaIntersecao) {
+        this.dataHoraVeiculoChegaIntersecao = dataHoraVeiculoChegaIntersecao;
+    }
+
+    public boolean isExistencia() {
+        return existencia;
+    }
+
+    public void setExistencia(boolean existencia) {
+        this.existencia = existencia;
+    }
+
+    public int getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(int velocidade) {
+        this.velocidade = velocidade;
+    }
+    
+    
     
 }
 
