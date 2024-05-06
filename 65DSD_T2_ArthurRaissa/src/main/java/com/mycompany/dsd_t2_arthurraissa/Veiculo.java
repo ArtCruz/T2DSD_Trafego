@@ -4,6 +4,9 @@
  */
 package com.mycompany.dsd_t2_arthurraissa;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  *
  * @author warley
@@ -14,28 +17,25 @@ public class Veiculo {
     private int dataHoraVeiculoChegaIntersecao;
     private boolean existencia;
     private int velocidade;
-    
-    public Veiculo(int id, int dataHoraVeiculoChegaIntersecao, int dataHoraVeiculoSaiIntersecao) {
-        id = id;
-        dataHoraVeiculoChegaIntersecao = dataHoraVeiculoChegaIntersecao;
-//        posicao = ramdomOrigem();
-//        destino = ramdomDestino();
+    private ArrayList<String> possiveisEntradas; // Adicione esta linha
+
+    public Veiculo(int id, int dataHoraVeiculoChegaIntersecao, int dataHoraVeiculoSaiIntersecao, ArrayList<String> possiveisEntradas) { // Modifique esta linha
+        this.id = id;
+        this.dataHoraVeiculoChegaIntersecao = dataHoraVeiculoChegaIntersecao;
+        this.possiveisEntradas = possiveisEntradas; // Modifique esta linha
+        posicao = ramdomOrigem(possiveisEntradas);
         
+        System.out.println("Posição de Origem: " + posicao);
+        //destino = ramdomDestino();
     }
     
-//    public Direcao ramdomOrigem(int ) {
-//        int dirIndicator = (int)(Math.random() * (4 - 0) + 0);
-//			if(dirIndicator == 1)
-//				direction = Direction.N;
-//			else if(dirIndicator == 2)
-//				direction = Direction.E;
-//			else if(dirIndicator == 3)
-//				direction = Direction.S;
-//			else
-//				direction = Direction.W;
-//
-//			return direction;
-//    }
-
+    private String ramdomOrigem(ArrayList<String> possiveisEntradas) {       
+        // Embaralhar a lista
+        Collections.shuffle(possiveisEntradas);
+        
+        // Pegar o primeiro elemento embaralhado
+        return possiveisEntradas.get(0);
+    }
+    
 }
 

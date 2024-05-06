@@ -158,6 +158,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> {
             TelaPrincipal example = new TelaPrincipal();
             example.setVisible(true);
+            Veiculo veiculo = new Veiculo(1, 0, 0, example.possiveisEntradas);
             
             example.mostrarPossiveisEntradas();
         });
