@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -18,11 +19,14 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class Tela2 extends javax.swing.JFrame {
 
     private JTable table = null;
+    public ArrayList possiveisEntradas;
 
     public Tela2() {
         setTitle("Matriz a partir de Arquivo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(600, 600);
+        setSize(1400, 1400);
+
+        possiveisEntradas = new ArrayList<>();
 
         // Lendo os dados do arquivo e construindo a matriz
         String[][] data = readDataFromFile("/home/warley/Desktop/Arthur/1_2024/65DSD/malha-exemplo-2.txt");
@@ -32,7 +36,10 @@ public class Tela2 extends javax.swing.JFrame {
             table = new JTable(data.length, data[0].length);
             for (int i = 0; i < data.length; i++) {
                 for (int j = 0; j < data[0].length; j++) {
-                    table.setValueAt(data[i][j], i, j);
+                    if(possivelEntrada(data[i][j], i, data.length, j, data[0].length)) {
+                        possiveisEntradas.add(data[i][j]+"-"+i+":"+j);
+                    }
+                    table.setValueAt(data[i][j]+"-"+i+":"+j, i, j);
                 }
             }
 
@@ -45,9 +52,8 @@ public class Tela2 extends javax.swing.JFrame {
 
                     String cellText = (value == null) ? "" : value.toString();
 
-                    System.out.println(cellComponent.toString());
                     // Define o fundo da célula na linha 2 e coluna 2 como amarelo
-                    switch (cellText) {
+                    switch (pegarDigitoPraCor(cellText)){
                         case "0":
                             cellComponent.setBackground(Color.WHITE);
                             break;
@@ -79,6 +85,32 @@ public class Tela2 extends javax.swing.JFrame {
             System.out.println("Não foi possível ler os dados do arquivo.");
         }
     }
+    
+    private boolean possivelEntrada(String dado, int posI, int extremoI, int posJ, int extremoJ) {        
+        if(dado.equals("2") && posJ == 0){
+            return true;
+        } else if(dado.equals("4") && posJ == (extremoJ-1)) {
+            return true;
+        } else if(dado.equals("3") && posI == 0) {
+            return true;
+        } else if(dado.equals("1") && posI == (extremoI-1)) {
+            return true;
+        }
+        return false;
+    }
+    
+    private String pegarDigitoPraCor(String cellText) {
+        String digito = ""; 
+        for(int i = 0; i < cellText.length(); i++){
+            if(cellText.charAt(i) == '-') {
+                return digito;
+            }
+            else {
+                digito += cellText.charAt(i);
+            }
+        }
+        return "";
+    }
 
     private String[][] readDataFromFile(String filename) {
         String[][] data = null;
@@ -105,11 +137,21 @@ public class Tela2 extends javax.swing.JFrame {
 
         return data;
     }
+    
+    public void mostrarPossiveisEntradas() {
+        if (possiveisEntradas != null) {
+            possiveisEntradas.forEach(System.out::println);
+        } else {
+            System.out.println("Não há possíveis entradas.");
+        }
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             Tela2 example = new Tela2();
             example.setVisible(true);
+            
+            example.mostrarPossiveisEntradas();
         });
     }
 
