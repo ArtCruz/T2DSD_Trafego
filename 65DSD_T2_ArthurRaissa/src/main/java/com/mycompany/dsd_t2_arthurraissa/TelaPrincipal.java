@@ -16,20 +16,28 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class Tela1 extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame {
 
     private JTable table = null;
     public ArrayList possiveisEntradas;
+    public int tipoCenario;
 
-    public Tela1() {
+    public TelaPrincipal() {
         setTitle("Matriz a partir de Arquivo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1400, 1400);
         
         possiveisEntradas = new ArrayList();
-
-        // Lendo os dados do arquivo e construindo a matriz
-        String[][] data = readDataFromFile("/home/warley/Desktop/Arthur/1_2024/65DSD/malha-exemplo-1.txt");
+        String[][] data = new String[DO_NOTHING_ON_CLOSE][DO_NOTHING_ON_CLOSE];
+        
+        tipoCenario = 3;
+        if(tipoCenario == 1) {
+            data = readDataFromFile("/home/warley/Desktop/Arthur/1_2024/65DSD/malha-exemplo-1.txt");
+        }else if (tipoCenario == 2) {
+            data = readDataFromFile("/home/warley/Desktop/Arthur/1_2024/65DSD/malha-exemplo-2.txt");
+        } else if (tipoCenario == 3) {
+            data = readDataFromFile("/home/warley/Desktop/Arthur/1_2024/65DSD/malha-exemplo-3.txt");
+        }
 
         // Criando a tabela
         if (data != null) {
@@ -148,7 +156,7 @@ public class Tela1 extends javax.swing.JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Tela1 example = new Tela1();
+            TelaPrincipal example = new TelaPrincipal();
             example.setVisible(true);
             
             example.mostrarPossiveisEntradas();
