@@ -4,13 +4,20 @@
  */
 package com.mycompany.dsd_t2_arthurraissa;
 
+import com.mycompany.dsd_t2_arthurraissa.Controller.CenarioController;
+import com.mycompany.dsd_t2_arthurraissa.Controller.VeiculoController;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
@@ -20,25 +27,38 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private JTable table = null;
     public ArrayList possiveisEntradas;
+    private CenarioController cenarioController;
     public int tipoCenario;
 
     public TelaPrincipal() {
+        
+        //inicializações
+        initComponents();
+        cbCenario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"1 - Simples", "2 - Médio", "3 - Complexo"}));
+        cenarioController = new CenarioController(cbCenario, this);
         setTitle("Matriz a partir de Arquivo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1400, 1400);
-        
         possiveisEntradas = new ArrayList();
-        String[][] data = new String[DO_NOTHING_ON_CLOSE][DO_NOTHING_ON_CLOSE];
         
-        tipoCenario = 3;
-        if(tipoCenario == 1) {
-            data = readDataFromFile("/home/warley/Desktop/Arthur/1_2024/65DSD/malha-exemplo-1.txt");
-        }else if (tipoCenario == 2) {
-            data = readDataFromFile("/home/warley/Desktop/Arthur/1_2024/65DSD/malha-exemplo-2.txt");
-        } else if (tipoCenario == 3) {
-            data = readDataFromFile("/home/warley/Desktop/Arthur/1_2024/65DSD/malha-exemplo-3.txt");
+        
+    }
+    
+    public void carregarCenario(int tipo){
+        String[][] data = new String[DO_NOTHING_ON_CLOSE][DO_NOTHING_ON_CLOSE];
+        this.tipoCenario = tipo;
+        switch (tipo){
+            case 1: 
+                data = readDataFromFile("C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego/malha-exemplo-1.txt");
+                break; 
+            case 2: 
+                data = readDataFromFile("C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego/malha-exemplo-2.txt");
+                break;
+            case 3: 
+                data = readDataFromFile("C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego/malha-exemplo-3.txt");
+                break;
         }
-
+        
         // Criando a tabela
         if (data != null) {
             table = new JTable(data.length, data[0].length);
@@ -87,9 +107,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 }
             });
 
-            // Adicionando a tabela em um JScrollPane e colocando-o no JFrame
             JScrollPane scrollPane = new JScrollPane(table);
-            getContentPane().add(scrollPane, BorderLayout.CENTER);
+            panelTabela.setLayout(new BorderLayout());
+            panelTabela.add(scrollPane, BorderLayout.CENTER);
         } else {
             System.out.println("Não foi possível ler os dados do arquivo.");
         }
@@ -121,7 +141,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         return "";
     }
 
-    private String[][] readDataFromFile(String filename) {
+    public String[][] readDataFromFile(String filename) {
         String[][] data = null;
 
         try {
@@ -178,17 +198,117 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelBotoes = new javax.swing.JPanel();
+        lbQTveiculos = new javax.swing.JLabel();
+        qtVeiculos = new javax.swing.JTextField();
+        cbCenario = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbSimulacao = new javax.swing.JComboBox<>();
+        btnIniciar = new javax.swing.JButton();
+        btnEncerrar = new javax.swing.JButton();
+        panelTabela = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lbQTveiculos.setBackground(new java.awt.Color(242, 190, 242));
+        lbQTveiculos.setText("Quantidade máxima de veículos:");
+        lbQTveiculos.setToolTipText("");
+        lbQTveiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        qtVeiculos.setText("1");
+        qtVeiculos.setToolTipText("");
+
+        jLabel1.setText("Cenário ");
+
+        jLabel2.setText("Tipo de simulação");
+
+        cbSimulacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnIniciar.setBackground(new java.awt.Color(60, 179, 113));
+        btnIniciar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnIniciar.setText("Iniciar");
+
+        btnEncerrar.setBackground(new java.awt.Color(255, 99, 71));
+        btnEncerrar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnEncerrar.setText("Encerrar");
+
+        javax.swing.GroupLayout panelBotoesLayout = new javax.swing.GroupLayout(panelBotoes);
+        panelBotoes.setLayout(panelBotoesLayout);
+        panelBotoesLayout.setHorizontalGroup(
+            panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotoesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelBotoesLayout.createSequentialGroup()
+                        .addComponent(lbQTveiculos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(qtVeiculos, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                    .addGroup(panelBotoesLayout.createSequentialGroup()
+                        .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbSimulacao, 0, 231, Short.MAX_VALUE)
+                            .addComponent(cbCenario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(45, 45, 45)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEncerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelBotoesLayout.setVerticalGroup(
+            panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotoesLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(qtVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbQTveiculos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbCenario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbSimulacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotoesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEncerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        panelTabela.setBackground(new java.awt.Color(142, 242, 242));
+
+        javax.swing.GroupLayout panelTabelaLayout = new javax.swing.GroupLayout(panelTabela);
+        panelTabela.setLayout(panelTabelaLayout);
+        panelTabelaLayout.setHorizontalGroup(
+            panelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelTabelaLayout.setVerticalGroup(
+            panelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(panelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -199,5 +319,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEncerrar;
+    private javax.swing.JButton btnIniciar;
+    private javax.swing.JComboBox<String> cbCenario;
+    private javax.swing.JComboBox<String> cbSimulacao;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lbQTveiculos;
+    private javax.swing.JPanel panelBotoes;
+    private javax.swing.JPanel panelTabela;
+    private javax.swing.JTextField qtVeiculos;
     // End of variables declaration//GEN-END:variables
 }

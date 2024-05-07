@@ -4,6 +4,7 @@
  */
 package com.mycompany.dsd_t2_arthurraissa;
 
+import com.mycompany.dsd_t2_arthurraissa.Controller.VeiculoController;
 import java.util.ArrayList;
 import java.util.Collections;
 

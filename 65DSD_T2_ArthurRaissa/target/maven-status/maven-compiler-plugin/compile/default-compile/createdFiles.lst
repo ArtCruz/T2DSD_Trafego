@@ -1,4 +1,5 @@
-com/mycompany/dsd_t2_arthurraissa/TelaPrincipal.class
-com/mycompany/dsd_t2_arthurraissa/Veiculo.class
-com/mycompany/dsd_t2_arthurraissa/VeiculoController.class
-com/mycompany/dsd_t2_arthurraissa/TelaPrincipal$1.class
+com\mycompany\dsd_t2_arthurraissa\Controller\CenarioController.class
+com\mycompany\dsd_t2_arthurraissa\Veiculo.class
+com\mycompany\dsd_t2_arthurraissa\Controller\VeiculoController.class
+com\mycompany\dsd_t2_arthurraissa\TelaPrincipal$1.class
+com\mycompany\dsd_t2_arthurraissa\TelaPrincipal.class
