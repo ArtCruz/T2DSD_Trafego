@@ -4,7 +4,7 @@
  */
 package com.mycompany.dsd_t2_arthurraissa.Controller;
 
-import com.mycompany.dsd_t2_arthurraissa.Veiculo;
+import model.Veiculo;
 
 /**
  *

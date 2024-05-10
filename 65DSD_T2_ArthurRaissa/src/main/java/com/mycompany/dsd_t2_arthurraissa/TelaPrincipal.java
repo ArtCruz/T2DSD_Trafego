@@ -4,7 +4,7 @@
  */
 package com.mycompany.dsd_t2_arthurraissa;
 
-import com.mycompany.dsd_t2_arthurraissa.Controller.CenarioController;
+import model.Veiculo;
 import com.mycompany.dsd_t2_arthurraissa.Controller.VeiculoController;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,15 +28,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private JTable table = null;
     public ArrayList possiveisEntradas;
-    private CenarioController cenarioController;
     public int tipoCenario;
 
     public TelaPrincipal() {
         
         //inicializações
         initComponents();
-        cbCenario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"1 - Simples", "2 - Médio", "3 - Complexo"}));
-        cenarioController = new CenarioController(cbCenario, this);
         setTitle("Matriz a partir de Arquivo");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1400, 1400);
@@ -44,8 +42,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }
     
+
     public void carregarCenario(int tipo){
-        String[][] data = new String[DO_NOTHING_ON_CLOSE][DO_NOTHING_ON_CLOSE];
+        
+        if (table != null) {
+            panelTabela.remove(table);
+        }
+        possiveisEntradas.clear();
+        table = null;
+        
+        
+        String[][] data = null; //new String[DO_NOTHING_ON_CLOSE][DO_NOTHING_ON_CLOSE];
         this.tipoCenario = tipo;
         switch (tipo){
             case 1: 
@@ -108,8 +115,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             });
 
             JScrollPane scrollPane = new JScrollPane(table);
+            panelTabela.removeAll();
             panelTabela.setLayout(new BorderLayout());
             panelTabela.add(scrollPane, BorderLayout.CENTER);
+            panelTabela.revalidate();
+            panelTabela.repaint();
         } else {
             System.out.println("Não foi possível ler os dados do arquivo.");
         }
@@ -198,16 +208,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         panelBotoes = new javax.swing.JPanel();
         lbQTveiculos = new javax.swing.JLabel();
         qtVeiculos = new javax.swing.JTextField();
-        cbCenario = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cbSimulacao = new javax.swing.JComboBox<>();
         btnIniciar = new javax.swing.JButton();
         btnEncerrar = new javax.swing.JButton();
+        btnCenario1 = new javax.swing.JButton();
+        btnCenario2 = new javax.swing.JButton();
+        btnCenario3 = new javax.swing.JButton();
         panelTabela = new javax.swing.JPanel();
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,7 +238,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Tipo de simulação");
 
-        cbSimulacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSimulacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semáfaros", "Monitores" }));
 
         btnIniciar.setBackground(new java.awt.Color(60, 179, 113));
         btnIniciar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -232,6 +247,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnEncerrar.setBackground(new java.awt.Color(255, 99, 71));
         btnEncerrar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnEncerrar.setText("Encerrar");
+
+        btnCenario1.setText("Simples");
+        btnCenario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCenario1ActionPerformed(evt);
+            }
+        });
+
+        btnCenario2.setText("Médio");
+        btnCenario2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCenario2ActionPerformed(evt);
+            }
+        });
+
+        btnCenario3.setText("Difícil");
+        btnCenario3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCenario3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBotoesLayout = new javax.swing.GroupLayout(panelBotoes);
         panelBotoes.setLayout(panelBotoesLayout);
@@ -243,15 +279,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(panelBotoesLayout.createSequentialGroup()
                         .addComponent(lbQTveiculos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(qtVeiculos, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                        .addComponent(qtVeiculos))
                     .addGroup(panelBotoesLayout.createSequentialGroup()
-                        .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbSimulacao, 0, 231, Short.MAX_VALUE)
-                            .addComponent(cbCenario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(cbSimulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelBotoesLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCenario1)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnCenario2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCenario3)))
                 .addGap(45, 45, 45)
                 .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -267,8 +307,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(lbQTveiculos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbCenario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(btnCenario1)
+                    .addComponent(btnCenario2)
+                    .addComponent(btnCenario3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -292,7 +334,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         panelTabelaLayout.setVerticalGroup(
             panelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 259, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -314,17 +356,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCenario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCenario1ActionPerformed
+            carregarCenario(1);
+    }//GEN-LAST:event_btnCenario1ActionPerformed
+
+    private void btnCenario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCenario2ActionPerformed
+            carregarCenario(2);
+    }//GEN-LAST:event_btnCenario2ActionPerformed
+
+    private void btnCenario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCenario3ActionPerformed
+            carregarCenario(3);
+    }//GEN-LAST:event_btnCenario3ActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCenario1;
+    private javax.swing.JButton btnCenario2;
+    private javax.swing.JButton btnCenario3;
     private javax.swing.JButton btnEncerrar;
     private javax.swing.JButton btnIniciar;
-    private javax.swing.JComboBox<String> cbCenario;
     private javax.swing.JComboBox<String> cbSimulacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbQTveiculos;
     private javax.swing.JPanel panelBotoes;
     private javax.swing.JPanel panelTabela;
