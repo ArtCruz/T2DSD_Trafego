@@ -1,5 +1,6 @@
 
 import com.mycompany.dsd_t2_arthurraissa.Controller.TelaPrincipalController;
+import com.mycompany.dsd_t2_arthurraissa.SimulacaoConfig;
 import com.mycompany.dsd_t2_arthurraissa.TelaPrincipal;
 import javax.swing.SwingUtilities;
 
@@ -14,11 +15,12 @@ import javax.swing.SwingUtilities;
  */
 public class App {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            TelaPrincipal view = new TelaPrincipal();
-            TelaPrincipalController controller = new TelaPrincipalController(view);
-            view.setVisible(true);
-        });
+//        SwingUtilities.invokeLater(() -> {
+//            TelaPrincipal view = new TelaPrincipal();
+//            TelaPrincipalController controller = new TelaPrincipalController(view);
+//            view.setVisible(true);
+//        });
+           new SimulacaoConfig();
     }
     
 }

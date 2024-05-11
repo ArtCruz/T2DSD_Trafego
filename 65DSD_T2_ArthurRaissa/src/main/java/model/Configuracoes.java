@@ -12,24 +12,21 @@ package model;
 public class Configuracoes {
     private static Configuracoes instance;
     private String malhaAtual;
-    private int qtdCarrosSimultaneos;
+    private int qtdVeiculos;
     private double intervaloInsercao;
     private String mecanismoExclusaoMutua;
 
     private boolean spawnarNovosCarros = true;
 
     public static final String ICONS_PATH = "icons/";
-    public static final String MALHA_PATH = "malhas/";
+    public static final String MALHA_PATH = "arquivos/";
 
     public boolean emExecucao = false;
 
-    public int getQtdCarrosSimultaneos(){
-        return qtdCarrosSimultaneos;
+    public int getQtdVeiculos(){
+        return qtdVeiculos;
     }
 
-    public double getIntervaloInsercao() {
-        return intervaloInsercao;
-    }
 
     private Configuracoes() {
     }
@@ -58,8 +55,8 @@ public class Configuracoes {
         return instance;
     }
 
-    public Configuracoes setqtdCarrosSimultaneos(int qtdCarrosSimultaneos) {
-        this.qtdCarrosSimultaneos = qtdCarrosSimultaneos;
+    public Configuracoes setqtdVeiculos(int qtdVeiculos) {
+        this.qtdVeiculos = qtdVeiculos;
         return instance;
     }
 

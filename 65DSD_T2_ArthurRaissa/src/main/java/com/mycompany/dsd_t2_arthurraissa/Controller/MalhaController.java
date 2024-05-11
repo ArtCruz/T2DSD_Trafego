@@ -50,14 +50,14 @@ public class MalhaController extends Thread{
 
     private void AtualizarCelula(int linha, int coluna){
         Celula celulaAtual = Malha.getInstance().getMatrizMalha()[linha][coluna];
-        if (!celulaAtual.getClassificacao().equals(ClassCelula.ENTRADA)) // Tem de ser entrada
+        if (!celulaAtual.getClassificacao().equals(ClassCelula.ENTRADA)) 
             return;
         if (!celulaAtual.celulaEstaVazia()) // Tem de estar vazia
             return;
-        if (this.getQtdCarrosCirculacao() == Configuracoes.getInstance().getQtdCarrosSimultaneos()) // NÃ£o pode ultrapassar o limite estabelecido
+        if (this.getQtdCarrosCirculacao() == Configuracoes.getInstance().getQtdVeiculos()) 
             return;
         try{
-            Thread.sleep((long) (Configuracoes.getInstance().getIntervaloInsercao()* 1000));
+            Thread.sleep(1000);
             adicionarNovoCarroAMalha(celulaAtual);
         } catch (Exception e){
             System.out.println(e.getMessage()+"   -   "+ Arrays.toString(e.getStackTrace()));
