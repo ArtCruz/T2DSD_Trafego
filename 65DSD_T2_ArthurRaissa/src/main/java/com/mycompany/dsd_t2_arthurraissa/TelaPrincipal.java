@@ -42,7 +42,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }
     
+    public JButton getBtnCenario1() {
+        return btnCenario1;
+    }
 
+    public JButton getBtnCenario2() {
+        return btnCenario2;
+    }
+
+    public JButton getBtnCenario3() {
+        return btnCenario3;
+    }
+
+    public JPanel getPanelTabela() {
+        return panelTabela;
+    }
+    
+//--------------------------------------------------------
     public void carregarCenario(int tipo){
         
         if (table != null) {
@@ -184,19 +200,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public static void main(String[] args) {
-    SwingUtilities.invokeLater(() -> {
-        TelaPrincipal example = new TelaPrincipal();
-        example.setVisible(true);        
-        // Crie uma instância de VeiculoController
-        VeiculoController veiculoController = new VeiculoController(new Veiculo(1, 0, 0, example.possiveisEntradas));
-
-        // Chame o método mover() do VeiculoController
-        veiculoController.mover();
-        
-        example.mostrarPossiveisEntradas();
-    });
-}
+//    public static void main(String[] args) {
+//    SwingUtilities.invokeLater(() -> {
+//        TelaPrincipal example = new TelaPrincipal();
+//        example.setVisible(true);        
+//        // Crie uma instância de VeiculoController
+//        VeiculoController veiculoController = new VeiculoController(new Veiculo(1, 0, 0, example.possiveisEntradas));
+//
+//        // Chame o método mover() do VeiculoController
+//        veiculoController.mover();
+//        
+//        example.mostrarPossiveisEntradas();
+//    });
+//}
 
 
     /**
@@ -249,25 +265,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnEncerrar.setText("Encerrar");
 
         btnCenario1.setText("Simples");
-        btnCenario1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCenario1ActionPerformed(evt);
-            }
-        });
 
         btnCenario2.setText("Médio");
-        btnCenario2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCenario2ActionPerformed(evt);
-            }
-        });
 
         btnCenario3.setText("Difícil");
-        btnCenario3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCenario3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelBotoesLayout = new javax.swing.GroupLayout(panelBotoes);
         panelBotoes.setLayout(panelBotoesLayout);
@@ -355,18 +356,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCenario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCenario1ActionPerformed
-            carregarCenario(1);
-    }//GEN-LAST:event_btnCenario1ActionPerformed
-
-    private void btnCenario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCenario2ActionPerformed
-            carregarCenario(2);
-    }//GEN-LAST:event_btnCenario2ActionPerformed
-
-    private void btnCenario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCenario3ActionPerformed
-            carregarCenario(3);
-    }//GEN-LAST:event_btnCenario3ActionPerformed
 
     
     /**

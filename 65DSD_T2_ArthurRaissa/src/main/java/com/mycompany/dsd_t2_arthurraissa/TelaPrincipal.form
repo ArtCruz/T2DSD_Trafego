@@ -189,25 +189,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Simples"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCenario1ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCenario2">
           <Properties>
             <Property name="text" type="java.lang.String" value="M&#xe9;dio"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCenario2ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCenario3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dif&#xed;cil"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCenario3ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
