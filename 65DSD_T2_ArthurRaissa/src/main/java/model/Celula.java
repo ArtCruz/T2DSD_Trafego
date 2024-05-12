@@ -32,7 +32,7 @@ public class Celula {
 
 
     public Celula(int coluna, int linha, int tipo, int qtdTotalLinhas, int qtdTotalColunas) {
-        this.mecanismoExclusaoMutua = Configuracoes.getInstance().getMecanismoExclusaoMutua();
+        this.mecanismoExclusaoMutua = Configuracoes.getInstancia().getMecanismoExclusaoMutua();
         this.lock = new ReentrantLock();
         this.semaforo = new Semaphore(1);
         this.coluna = coluna;

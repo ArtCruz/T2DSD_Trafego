@@ -45,7 +45,7 @@ public class Malha {
     }
 
     private void inicializarVariaveis(){
-        File arquivoMalha = new File(Configuracoes.getInstance().getMalhaAtual());
+        File arquivoMalha = new File(Configuracoes.getInstancia().getMalhaAtual());
         try{
             matrizScanner = new Scanner(arquivoMalha);
             this.qtdLinhas = matrizScanner.nextInt();

@@ -33,9 +33,9 @@ public class MalhaController extends Thread{
     }
 
     private void inicializar() {
-        Configuracoes.getInstance().emExecucao = true;
-        while (Configuracoes.getInstance().emExecucao){
-            while (Configuracoes.getInstance().getSpawnarNovosCarros() && Configuracoes.getInstance().emExecucao){
+        Configuracoes.getInstancia().emExecucao = true;
+        while (Configuracoes.getInstancia().emExecucao){
+            while (Configuracoes.getInstancia().getGerarNovosCarros() && Configuracoes.getInstancia().emExecucao){
                 for (int linha = 0; linha < Malha.getInstance().getQtdLinhas(); linha++) {
                     for (int coluna = 0; coluna < Malha.getInstance().getQtdColunas(); coluna++) {
                         this.AtualizarCelula(linha,coluna);
@@ -43,7 +43,7 @@ public class MalhaController extends Thread{
                 }
             }
             if (this.getQtdCarrosCirculacao() == 0)
-                Configuracoes.getInstance().emExecucao = false;
+                Configuracoes.getInstancia().emExecucao = false;
         }
         encerrarSimulacao();
     }
@@ -54,7 +54,7 @@ public class MalhaController extends Thread{
             return;
         if (!celulaAtual.celulaEstaVazia()) // Tem de estar vazia
             return;
-        if (this.getQtdCarrosCirculacao() == Configuracoes.getInstance().getQtdVeiculos()) 
+        if (this.getQtdCarrosCirculacao() == Configuracoes.getInstancia().getQtdVeiculos()) 
             return;
         try{
             Thread.sleep(1000);

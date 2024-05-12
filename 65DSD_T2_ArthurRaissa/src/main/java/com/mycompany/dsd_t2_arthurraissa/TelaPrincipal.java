@@ -72,13 +72,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.tipoCenario = tipo;
         switch (tipo){
             case 1: 
-                data = readDataFromFile("C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego/malha-exemplo-1.txt");
+                data = readDataFromFile("C:/Users/Usuário/Documents/MeusProjetos/T2DSD_Trafego/65DSD_T2_ArthurRaissa/src/main/java/arquivos/malha-1.txt");
                 break; 
             case 2: 
-                data = readDataFromFile("C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego/malha-exemplo-2.txt");
+                data = readDataFromFile("C:/Users/Usuário/Documents/MeusProjetos/T2DSD_Trafego/65DSD_T2_ArthurRaissa/src/main/java/arquivos/malha-1.txt");
                 break;
             case 3: 
-                data = readDataFromFile("C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego/malha-exemplo-3.txt");
+                data = readDataFromFile("C:/Users/Usuário/Documents/MeusProjetos/T2DSD_Trafego/65DSD_T2_ArthurRaissa/src/main/java/arquivos/malha-1.txt");
                 break;
         }
         

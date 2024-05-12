@@ -41,7 +41,7 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
     public SimulacaoConfig() {
         initComponents();
         
-        setTitle("Simulação de Trafego em Malha Viária");
+        setTitle("Simulação de Trafego");
         setSize(1200, 1200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //loadMalhas(cbCenario);
@@ -59,23 +59,29 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
     
     
     private void loadMalhas(JPanel containerPanel) {
-        File arquivo = new File("malhas");
+        // Caminho para o diretório que contém os arquivos de malha
+        File arquivo = new File("C:/Users/Usuário/Documents/MeusProjetos/T2DSD_Trafego/65DSD_T2_ArthurRaissa/src/main/java/arquivos");
 
         if (arquivo.exists() && arquivo.isDirectory()) {
             File[] files = arquivo.listFiles();
 
             for (File file : files) {
+                // Adiciona apenas arquivos, ignorando diretórios
                 if (file.isFile()) {
-                    cbCenario.addItem(file.getName());
+                    // Verifica se o arquivo termina com ".txt" para evitar adicionar outros tipos de arquivo
+                    if (file.getName().toLowerCase().endsWith(".txt")) {
+                        cbCenario.addItem(file.getName());
+                    }
                 }
             }
         }
-    }
+    }   
+
     
     public void btnIniciar(){
         btnIniciar.addActionListener((ActionEvent e) -> {
             Configuracoes.reset();
-            Configuracoes.getInstance().setMalhaAtual(getCenarioSelecionado())
+            Configuracoes.getInstancia().setMalhaAtual(getCenarioSelecionado())
                     .setMecanismoExclusaoMutua(getSimulacaoSelecionado())
                     .setqtdVeiculos(Integer.parseInt(qtVeiculos.getText()));
             Malha.reset();
@@ -98,7 +104,7 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
     
     public void btnEncerrar() {
         btnEncerrar.addActionListener((ActionEvent e) -> {
-            Configuracoes.getInstance().emExecucao = false;
+            Configuracoes.getInstancia().emExecucao = false;
             Configuracoes.reset();
             super.dispose();
         });

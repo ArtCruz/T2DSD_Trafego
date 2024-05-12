@@ -33,7 +33,7 @@ public class Carro extends Thread {
 
     @Override
     public void run() {
-        while (Configuracoes.getInstance().emExecucao && !this.finalizado){
+        while (Configuracoes.getInstancia().emExecucao && !this.finalizado){
             Celula proximaCelula = Malha.getInstance().getProximaCelula(celulaAtual);
 
             

@@ -10,13 +10,13 @@ package model;
  * @author Raissa
  */
 public class Configuracoes {
-    private static Configuracoes instance;
+    private static Configuracoes instancia;
     private String malhaAtual;
     private int qtdVeiculos;
     private double intervaloInsercao;
     private String mecanismoExclusaoMutua;
 
-    private boolean spawnarNovosCarros = true;
+    private boolean gerarNovosCarros = true;
 
     public static final String ICONS_PATH = "icons/";
     public static final String MALHA_PATH = "arquivos/";
@@ -31,18 +31,18 @@ public class Configuracoes {
     private Configuracoes() {
     }
 
-    public static synchronized Configuracoes getInstance(){
-        if (instance == null)
+    public static synchronized Configuracoes getInstancia(){
+        if (instancia == null)
             reset();
-        return instance;
+        return instancia;
     }
 
     public static synchronized void reset(){
-        instance =  new Configuracoes();
+        instancia =  new Configuracoes();
     }
 
-    public static void setInstance(Configuracoes instance) {
-        Configuracoes.instance = instance;
+    public static void setInstancia(Configuracoes instancia) {
+        Configuracoes.instancia = instancia;
     }
 
     public String getMalhaAtual() {
@@ -52,25 +52,25 @@ public class Configuracoes {
     public Configuracoes setMalhaAtual(String malhaAtual) {
 
         this.malhaAtual = malhaAtual;
-        return instance;
+        return instancia;
     }
 
     public Configuracoes setqtdVeiculos(int qtdVeiculos) {
         this.qtdVeiculos = qtdVeiculos;
-        return instance;
+        return instancia;
     }
 
     public Configuracoes setIntervaloInsercao(double intervaloInsercao) {
         this.intervaloInsercao = intervaloInsercao;
-        return instance;
+        return instancia;
     }
 
-    public boolean getSpawnarNovosCarros(){
-        return this.spawnarNovosCarros;
+    public boolean getGerarNovosCarros(){
+        return this.gerarNovosCarros;
     }
 
-    public void setSpawnarNovosCarros(boolean spawnarNovosCarros) {
-        this.spawnarNovosCarros = spawnarNovosCarros;
+    public void setGerarNovosCarros(boolean gerarNovosCarros) {
+        this.gerarNovosCarros = gerarNovosCarros;
     }
 
     public String getMecanismoExclusaoMutua() {
@@ -79,6 +79,6 @@ public class Configuracoes {
 
     public Configuracoes setMecanismoExclusaoMutua(String mecanismoExclusaoMutua) {
         this.mecanismoExclusaoMutua = mecanismoExclusaoMutua;
-        return instance;
+        return instancia;
     }
 }
