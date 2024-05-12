@@ -44,23 +44,23 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
         setTitle("Simulação de Trafego");
         setSize(1200, 1200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //loadMalhas(cbCenario);
+        loadMalhas();
         
         //btnIniciar();
         //btnEncerrar();
         //Tabela();
         
-        malhaController = new MalhaController();
-        malhaController.anexarObserver(this);
-        malhaController.start();
+//        malhaController = new MalhaController();
+//        malhaController.anexarObserver(this);
+//        malhaController.start();
         super.setVisible(true);
         
     }
     
     
-    private void loadMalhas(JPanel containerPanel) {
+    private void loadMalhas() {
         // Caminho para o diretório que contém os arquivos de malha
-        File arquivo = new File("C:/Users/Usuário/Documents/MeusProjetos/T2DSD_Trafego/65DSD_T2_ArthurRaissa/src/main/java/arquivos");
+        File arquivo = new File("C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego");
 
         if (arquivo.exists() && arquivo.isDirectory()) {
             File[] files = arquivo.listFiles();
@@ -73,7 +73,7 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
                         cbCenario.addItem(file.getName());
                     }
                 }
-            }
+            }System.out.println("chegou aqui");
         }
     }   
 

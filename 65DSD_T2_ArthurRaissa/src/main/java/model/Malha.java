@@ -54,6 +54,7 @@ public class Malha {
         }catch (Exception e){
             System.out.println(e.getMessage()+" - "+ Arrays.toString(e.getStackTrace()));
         }
+        System.out.println("passou da inicialização: ");
     }
 
     private void inicializarMalha(){
