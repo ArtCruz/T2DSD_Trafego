@@ -79,18 +79,22 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
 
     
     public void btnIniciar(){
-        btnIniciar.addActionListener((ActionEvent e) -> {
+        
+       // btnIniciar.addActionListener((ActionEvent e) -> {
             Configuracoes.reset();
             Configuracoes.getInstancia().setMalhaAtual(getCenarioSelecionado())
                     .setMecanismoExclusaoMutua(getSimulacaoSelecionado())
                     .setqtdVeiculos(Integer.parseInt(qtVeiculos.getText()));
             Malha.reset();
-            super.dispose();            
-        });
+            
+            this.tabela();
+            malhaController = new MalhaController();
+            malhaController.anexarObserver(this);
+            malhaController.start();
+            
+            //super.dispose();            
+       // });
         
-//        this.setLocationRelativeTo(null);
-//        this.setResizable(false);
-//        super.setVisible(true);
     }
     
     public String getCenarioSelecionado(){
@@ -111,7 +115,7 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
     }
     
     
-    public void Tabela(){
+    public void tabela(){
         table = new JTable();
         table.setModel(new MalhaTableModel());
         table.setRowHeight(32);
@@ -300,10 +304,12 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
            btnIniciar();
+           System.out.println("click iniciar");
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncerrarActionPerformed
         btnEncerrar();
+        System.out.println("click encerrar");
     }//GEN-LAST:event_btnEncerrarActionPerformed
 
     
