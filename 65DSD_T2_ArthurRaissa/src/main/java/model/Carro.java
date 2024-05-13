@@ -81,14 +81,9 @@ public class Carro extends Thread {
         while (!reservou){
             LinkedList<Celula> celulasReservadas = new LinkedList<>();
             for (Celula celula : rotaCruzamento){
-                // tenta reservar e adicionar a lista de reservadas
-                // se nÃ£o conseguir, libera as ja reservadas e reseta a tentativa
                 if (!celula.tentarReservar()) {
                     liberarCelulas(celulasReservadas);
                     try {
-                        // como tem momentos que 4 carros estÃ£o disputando o cruzamento, com
-                        // possiveis rotas longas, 400 era muito pouco, talvez seja interessante calcular uma
-                        // nova rota
                         sleep(100 + random.nextInt(1000));
                     }catch (Exception e){
                         System.out.println(e);
@@ -133,7 +128,6 @@ public class Carro extends Thread {
         try {
             Thread.sleep(tempoEspera);
         } catch (InterruptedException ignored) {
-            // Ocorreu tudo OK! Ela foi interrompida
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -155,8 +149,6 @@ public class Carro extends Thread {
         this.interrupt();
     }
 
-
-// Print de informaÃ§Ãµes
 
     public void printInformacoes(){
         System.out.println(

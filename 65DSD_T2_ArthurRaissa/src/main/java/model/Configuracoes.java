@@ -19,8 +19,8 @@ public class Configuracoes {
     private boolean gerarNovosCarros = true;
     
 // -------------mudar aqui para o caminho no computador atual -------------------------------
-    public static final String ICONS_PATH = "C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego/icones/";
-    public static final String MALHA_PATH = "C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego/";
+    public static final String ICONS_PATH = "/home/warley/Documents/GitHub/T2DSD_Trafego/icones/";
+    public static final String MALHA_PATH = "/home/warley/Documents/GitHub/T2DSD_Trafego/";
 
     public boolean emExecucao = false;
 

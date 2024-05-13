@@ -39,8 +39,8 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
     
     
     private void loadMalhas() {
-// -------------mudar aqui para o caminho no computador atual -------------------------------
-        File arquivo = new File("C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego");
+        // -------------mudar aqui para o caminho no computador atual -------------------------------
+        File arquivo = new File("/home/warley/Documents/GitHub/T2DSD_Trafego/");
 
         if (arquivo.exists() && arquivo.isDirectory()) {
             File[] files = arquivo.listFiles();
@@ -106,12 +106,12 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
     }
     
     
-    @Override
-    public void atuIconeDaCelula(Celula celula) {
-        MalhaTableModel malhaTableModel = (MalhaTableModel) table.getModel();
-        malhaTableModel.fireTableCellUpdated(celula.getLinha(), celula.getColuna());
-        malhaTableModel.fireTableDataChanged();    
-    }
+        @Override
+        public void atuIconeDaCelula(Celula celula) {
+            MalhaTableModel malhaTableModel = (MalhaTableModel) table.getModel();
+            malhaTableModel.fireTableCellUpdated(celula.getLinha(), celula.getColuna());
+            malhaTableModel.fireTableDataChanged();    
+        }
 
     @Override
     public void atuCarrosNaMalha(int qtdCarrosMalha) {

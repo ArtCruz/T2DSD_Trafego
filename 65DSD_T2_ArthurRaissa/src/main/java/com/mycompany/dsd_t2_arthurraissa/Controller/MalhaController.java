@@ -48,7 +48,7 @@ public class MalhaController extends Thread{
         Celula celulaAtual = Malha.getInstance().getMatrizMalha()[linha][coluna];
         if (!celulaAtual.getClassificacao().equals(ClassCelula.ENTRADA)) 
             return;
-        if (!celulaAtual.celulaEstaVazia()) // Tem de estar vazia
+        if (!celulaAtual.celulaEstaVazia())
             return;
         if (this.getQtdCarrosCirculacao() == Configuracoes.getInstancia().getQtdVeiculos()) 
             return;
@@ -104,4 +104,18 @@ public class MalhaController extends Thread{
         }
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
