@@ -104,18 +104,4 @@ public class MalhaController extends Thread{
         }
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
