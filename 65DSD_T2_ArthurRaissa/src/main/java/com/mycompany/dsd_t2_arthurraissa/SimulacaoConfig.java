@@ -6,21 +6,8 @@ package com.mycompany.dsd_t2_arthurraissa;
 
 import com.mycompany.dsd_t2_arthurraissa.Controller.MalhaController;
 import com.mycompany.dsd_t2_arthurraissa.Controller.Observer;
-import model.Veiculo;
-import com.mycompany.dsd_t2_arthurraissa.Controller.VeiculoController;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -42,59 +29,45 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
         initComponents();
         
         setTitle("Simulação de Trafego");
-        setSize(1200, 1200);
+        setSize(1200, 700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         loadMalhas();
-        
-        //btnIniciar();
-        //btnEncerrar();
-        //Tabela();
-        
-//        malhaController = new MalhaController();
-//        malhaController.anexarObserver(this);
-//        malhaController.start();
         super.setVisible(true);
-        
+        //pack();
+                
     }
     
     
     private void loadMalhas() {
-        // Caminho para o diretório que contém os arquivos de malha
+// -------------mudar aqui para o caminho no computador atual -------------------------------
         File arquivo = new File("C:/Users/Raissa/Documents/NetBeansProjects/T2DSD_Trafego");
 
         if (arquivo.exists() && arquivo.isDirectory()) {
             File[] files = arquivo.listFiles();
 
             for (File file : files) {
-                // Adiciona apenas arquivos, ignorando diretórios
                 if (file.isFile()) {
-                    // Verifica se o arquivo termina com ".txt" para evitar adicionar outros tipos de arquivo
                     if (file.getName().toLowerCase().endsWith(".txt")) {
                         cbCenario.addItem(file.getName());
                     }
                 }
-            }System.out.println("chegou aqui");
+            }
         }
     }   
 
     
     public void btnIniciar(){
         
-       // btnIniciar.addActionListener((ActionEvent e) -> {
             Configuracoes.reset();
             Configuracoes.getInstancia().setMalhaAtual(getCenarioSelecionado())
                     .setMecanismoExclusaoMutua(getSimulacaoSelecionado())
                     .setqtdVeiculos(Integer.parseInt(qtVeiculos.getText()));
             Malha.reset();
             
-            this.tabela();
+            tabela();
             malhaController = new MalhaController();
             malhaController.anexarObserver(this);
             malhaController.start();
-            
-            //super.dispose();            
-       // });
-        
     }
     
     public String getCenarioSelecionado(){
@@ -107,18 +80,15 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
     
     
     public void btnEncerrar() {
-        btnEncerrar.addActionListener((ActionEvent e) -> {
             Configuracoes.getInstancia().emExecucao = false;
             Configuracoes.reset();
-            super.dispose();
-        });
     }
     
     
     public void tabela(){
         table = new JTable();
         table.setModel(new MalhaTableModel());
-        table.setRowHeight(32);
+        table.setRowHeight(24);
         table.setDefaultRenderer(Object.class, new MalhaTableModelCellRenderer());
 
         TableColumnModel columnModel = table.getColumnModel();
@@ -126,7 +96,9 @@ public class SimulacaoConfig extends javax.swing.JFrame implements Observer{
             columnModel.getColumn(i).setMaxWidth(32);
         }
         
-        panelTabela.add(table);
+        panelTabela.setLayout(new BorderLayout());
+        panelTabela.add(new JScrollPane(table), BorderLayout.CENTER);
+        panelTabela.revalidate();
     }
 
     public JPanel getPanelTabela() {

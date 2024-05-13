@@ -10,10 +10,6 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- *
- * @author Raissa
- */
 public class Malha {
     private Celula matrizMalha[][];
     private int qtdLinhas;
@@ -54,7 +50,7 @@ public class Malha {
         }catch (Exception e){
             System.out.println(e.getMessage()+" - "+ Arrays.toString(e.getStackTrace()));
         }
-        System.out.println("passou da inicialização: ");
+        
     }
 
     private void inicializarMalha(){

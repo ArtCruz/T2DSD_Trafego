@@ -13,10 +13,6 @@ import model.ClassCelula;
 import model.Configuracoes;
 import model.Malha;
 
-/**
- *
- * @author Raissa
- */
 public class MalhaController extends Thread{
  
     private List<Carro> carrosEmCirculacao;
